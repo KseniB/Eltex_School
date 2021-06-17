@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main()
+{
+    const int N = 3;
+    int K = 1;
+    int A[N][N];
+    for (int i = 0; i < N; i++){
+        for (int j = 0; j < N; j++){
+            A[i][j] = K++;
+            printf("%d ", A[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
