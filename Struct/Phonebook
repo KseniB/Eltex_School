@@ -63,23 +63,23 @@ int main (){
     
     while(ex == 1){
         
-        printf ("Выберите действие: \n");
-        printf ("1. Добавить контакт \n");
-        printf ("2. Удалить контакт \n");
-        printf ("3. Поиск контакта \n");
-        printf ("4. Вывести весь список \n");
-        printf ("5. Выход \n");
+        printf ("Select an action: \n");
+        printf ("1. Add contact \n");
+        printf ("2. Delete contact \n");
+        printf ("3. Search for a contact \n");
+        printf ("4. Display the entire list of contacts \n");
+        printf ("5. Exit \n");
         
         scanf("%d", &menu);
     
         if (menu == 1){
-            printf("Добавьте номер \n");
+            printf("Enter the number \n");
             scanf("%d", &str3);
             getchar();
-            printf("Добавьте имя \n");
+            printf("Enter first name \n");
             fgets(str1, sizeof(str1), stdin);
             fflush(stdin);
-            printf("Добавьте фамилию \n");
+            printf("Enter last name \n");
             fgets(str2, sizeof(str2), stdin);
             fflush(stdin);
             
@@ -92,7 +92,7 @@ int main (){
                     func(mC[i].lname, strU2, n);
                     mC[i].num = str3;
                     mC[i].status = 1;
-                    printf("Контакт добавлен \n");
+                    printf("Contact added \n");
                     break;
                 }
             }
@@ -100,7 +100,7 @@ int main (){
         }
               
         if (menu == 2){
-            printf("Введите номер \n");
+            printf("Enter the number \n");
             scanf("%d", &str3);
             getchar();
             int s = 0;
@@ -115,20 +115,20 @@ int main (){
             for(int j = s; j < N; j++){
                 mC[j].pN = j;
             }
-            printf("Контакт удален \n");
+            printf("Contact deleted \n");
             printf("--------------\n");
         }
         
         if (menu == 3){
-            printf("Поиск по: \n");
-            printf("1. Имени \n");
-            printf("2. Фамилии \n");
-            printf("3. Номеру \n");
+            printf("Search by: \n");
+            printf("1. First name \n");
+            printf("2. Last name \n");
+            printf("3. Number \n");
             scanf("%d", &menu2);
             getchar();
             
             if (menu2 == 1){
-                printf("Введите имя \n");
+                printf("Enter first name \n");
                 fgets(str1, sizeof(str1), stdin);
                 fflush(stdin);
                     
@@ -141,12 +141,12 @@ int main (){
                         }
                     }
                     else if(i == N){
-                        printf("Контакт не найден \n");
+                        printf("Contact not found \n");
                     }
                 }
             }
             if (menu2 == 2){
-                printf("Введите фамилию \n");
+                printf("Enter last name \n");
                 fgets(str2, sizeof(str2), stdin);
                 fflush(stdin);
                 
@@ -159,12 +159,12 @@ int main (){
                         }
                     }
                     else if(i == N){
-                        printf("Контакт не найден \n");
+                        printf("Contact not found \n");
                     }
                 }
             }
             if (menu2 == 3){
-                printf("Введите номер \n");
+                printf("Enter the number \n");
                 scanf("%d", &str3);
                 getchar();
                 
@@ -175,7 +175,7 @@ int main (){
                         printf("Number: %d\n", mC[i].num);
                         break;
                     }else if(i == N){
-                        printf("Контакт не найден \n");
+                        printf("Contact not found \n");
                     }
                 }
             }
