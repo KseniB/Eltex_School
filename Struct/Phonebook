@@ -38,13 +38,13 @@ int main (){
         mC[i].pN = i + 1;
     }
 
-    mC[0].pN = 1;
+    mC[0].pN = 1;               //for example
     mC[0].num = 77722;
     mC[0].fname = "Oleg\n";
     mC[0].lname = "Fedorov\n";
     mC[0].status = 1;
     
-    mC[1].pN = 2;
+    mC[1].pN = 2;               //for example
     mC[1].num = 77111;
     mC[1].fname = "Oleg\n";
     mC[1].lname = "Markov\n";
