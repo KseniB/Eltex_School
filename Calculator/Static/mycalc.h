@@ -5,5 +5,3 @@ float plus(float Sum);
 float minus(float Raz);
 float multiply(float Pro);
 float divide(float Del);
-
-#endif
