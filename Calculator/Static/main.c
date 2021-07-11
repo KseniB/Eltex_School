@@ -12,38 +12,39 @@ void menu(float Res) {
   printf("--------------\n");
 }
 
-int main() {
+int main(){
 	float res = 0.0;
 	char a[255];
 	int b;
-	while(1) {
+	while(1){
 		system("clear");
 		menu(res);
 		fgets(&a, 2, stdin);
-    fflush(stdin);
+		fflush(stdin);
 		b = atoi(&a);
-		switch(b) {
+		
+		switch(b){
 			case 1:
 				res = plus(res);
-				break;
+					break;
 			case 2:
 				res = minus(res);
-          break;
+					break;
 			case 3:
 				res = multiply(res);
-          break;
+					break;
 			case 4:
 				res = divide(res);
-          break;
+					break;
 			case 5:
 				res = 0.0;
-          break;
+					break;
 			case 6:
 				_Exit(0);
-          break;
+					break;
 			default :
 				printf("Wrong input \n");
-				  break;
+					break;
 		}
 	}
 }
