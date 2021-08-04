@@ -11,6 +11,7 @@
 */
 
 int main(){
+  
     pid_t branchPid[2];
     pid_t leavesPid[2];
     int branch_i;
@@ -32,6 +33,6 @@ int main(){
     waitpid(branchPid[branch_i], NULL, WUNTRACED);
     population--;
     }
-printf("Trunk   PID:%d\n", getpid());
-return 0;
+    printf("Trunk   PID:%d\n", getpid());
+    return 0;
 }
