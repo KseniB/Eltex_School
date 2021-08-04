@@ -1,8 +1,8 @@
 CC := gcc
 #LDFLAGS := -lm
 
-SOURCER1 := server
-SOURCER2 := client
+SOURCER1 := sender
+SOURCER2 := receiver
 
 .PHONY := all clear
 
