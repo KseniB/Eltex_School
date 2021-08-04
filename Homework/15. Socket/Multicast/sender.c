@@ -23,17 +23,17 @@ int len;
 
 struct sockaddr_in server;
     
-if((fd = socket(AF_INET, SOCK_DGRAM, 0)) == -1) {
+if((fd = socket(AF_INET, SOCK_DGRAM, 0)) == -1){
 	perror("Socket:");
 	exit(1);
 }
 memset(&server, 0, sizeof(server));
-server.sin_family    = AF_INET;  
+server.sin_family = AF_INET;  
 server.sin_addr.s_addr = inet_addr(M_ADDR);
 server.sin_port = htons(M_PORT); 
 len = sizeof(server);
 	
-if(sendto(fd, buffer, strlen(buffer), 0, (struct sockaddr*)&server, len) == -1) {
+if(sendto(fd, buffer, strlen(buffer), 0, (struct sockaddr*)&server, len) == -1){
     perror("Sendto:");
     exit(1);
 }
