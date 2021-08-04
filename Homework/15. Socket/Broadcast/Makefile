@@ -8,7 +8,6 @@ SOURCER2 := receiver
 
 all: $(SOURCER1) $(SOURCER2)
 
-
 $(SOURCER1): $(SOURCER1).c
 		gcc $(SOURCER1).c -o $(SOURCER1) -g -pthread -lrt
 
