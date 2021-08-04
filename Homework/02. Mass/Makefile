@@ -5,7 +5,7 @@ BIN := main
 SOURCES := main.c
 #HEADERS := main.h
 
-.PHONY := clean
+.PHONY := clear
 
 all: $(BIN)
 
@@ -16,5 +16,5 @@ $(BIN):	$(SOURCES)
 
 #$(BIN): $(HEADERS)
 
-clean: 
+clear: 
 		rm -rf $(BIN)
