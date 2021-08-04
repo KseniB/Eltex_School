@@ -4,7 +4,7 @@ CC := gcc
 SOURCER1 := server
 SOURCER2 := client
 
-.PHONY := all clean
+.PHONY := all clear
 
 all: $(SOURCER1) $(SOURCER2)
 
