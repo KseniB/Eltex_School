@@ -13,7 +13,7 @@
 
 
 #define B_PORT 7777
-#define B_ADDRES "255.0.0.1"
+#define B_ADDRES "224.0.0.1"
 
 int main(int argc, char *argv[]){
 
