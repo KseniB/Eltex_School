@@ -11,5 +11,5 @@ float divide(float Del){
 			Del /= a;
 			return Del;
 		}
-	} while(a == 0);
+	}while(a == 0);
 }
