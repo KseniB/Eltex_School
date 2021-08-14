@@ -1,6 +1,6 @@
 #include "mycalc.h"
 
-void menu(float Res) {
+void Menu(float Res){
   printf("1. + \n");
   printf("2. - \n");
   printf("3. * \n");
@@ -18,7 +18,7 @@ int main(){
 	int b;
 	while(1){
 		system("clear");
-		menu(res);
+		Menu(res);
 		fgets(&a, 2, stdin);
 		fflush(stdin);
 		b = atoi(&a);
