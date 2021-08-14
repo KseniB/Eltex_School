@@ -26,25 +26,31 @@ int main(){
 		switch(b){
 			case 1:
 				res = plus(res);
-					break;
+			break;
+				
 			case 2:
 				res = minus(res);
-					break;
+			break;
+				
 			case 3:
 				res = multiply(res);
-					break;
+			break;
+				
 			case 4:
 				res = divide(res);
-					break;
+			break;
+				
 			case 5:
 				res = 0.0;
-					break;
+			break;
+				
 			case 6:
 				_Exit(0);
-					break;
+			break;
+				
 			default :
 				printf("Wrong input \n");
-					break;
+			break;
 		}
 	}
 }
