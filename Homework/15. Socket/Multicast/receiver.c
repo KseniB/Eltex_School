@@ -52,6 +52,5 @@ int main(int argc, char *argv[]){
 		perror("Recvfrom:");
 		exit(1);
 	}
-
 	printf("%s\n", buffer);
 }
