@@ -1,4 +1,5 @@
 CC := gcc
+#LDFLAGS := -lm
 
 LIB := statiCalc
 BIN := statiCalc_lib
