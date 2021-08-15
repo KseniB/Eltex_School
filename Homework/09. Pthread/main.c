@@ -27,7 +27,6 @@ int main(void){
             exit(EXIT_FAILURE);
         }
     }
-
     for(int i = 1; i <= 1000; i++){
         ret = pthread_join(tid[i - 1], NULL);
         if(ret != 0){
