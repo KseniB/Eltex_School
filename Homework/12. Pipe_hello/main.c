@@ -25,7 +25,7 @@ int main(void){
         close(rdwr[0]);
         exit(EXIT_SUCCESS);
     }else{
-        printf("Parent: Write\n");
+        printf("Parent write\n");
         close(rdwr[0]);
         write(rdwr[1], hello, 6);
         close(rdwr[1]);
