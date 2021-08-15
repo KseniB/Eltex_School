@@ -1,5 +1,4 @@
 CC := gcc
-#LDFLAGS := -lm
 
 BIN := main
 SOURCES := main.c
