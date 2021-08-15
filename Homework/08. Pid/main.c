@@ -33,6 +33,7 @@ int main(){
     waitpid(branchPid[branch_i], NULL, WUNTRACED);
     population--;
     }
+  
     printf("Trunk   PID:%d\n", getpid());
     return 0;
 }
