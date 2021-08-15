@@ -146,7 +146,6 @@ void Menu(int task)
 		default:
 		exit_t = 1;
 	}
-
 }
 
 int main(void){
