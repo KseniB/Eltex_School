@@ -16,7 +16,6 @@ int main(void){
 	} else {
 		printf("Access granted!\n");
 	}
-
 	return 0;
 	}
 
