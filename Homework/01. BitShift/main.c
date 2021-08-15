@@ -17,6 +17,5 @@ int main(void){
 	scanf("%d", &Shift);
 
 	printf("Result: %x \n", BitShift(Num, (uint8_t)Shift));
-
 	return 0;
 }
