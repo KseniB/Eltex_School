@@ -1,20 +1,33 @@
 CC := gcc
 #LDFLAGS := -lm
 
-BIN := main
-SOURCES := main.c
-#HEADERS := main.h
+SERVER_BIN := mq_server
+CLIENT_BIN := mq_client
+SERVER_SOURCES := server.c
+CLIENT_SOURCES := client.c
 
-.PHONY := all clear
+.PHONY: clear
 
-all: $(BIN)
+server: $(SERVER_SOURCES)
+		@gcc $(SERVER_SOURCES) -o $(SERVER_BIN) -ansi -pedantic -Wall -lrt -lpthread
+		@./$(SERVER_BIN)
+		@rm -rf $(SERVER_BIN)
 
-$(BIN):	$(SOURCES)
-                gcc $(SOURCES) -o $(BIN)
-                ./$(BIN)
-                rm -rf $(BIN)
+client: $(CLIENT_SOURCES)
+		@gcc $(CLIENT_SOURCES) -o $(CLIENT_BIN) -ansi -pedantic -Wall -lrt -lpthread
+		@./$(CLIENT_BIN)
+		@rm -rf $(CLIENT_BIN)
+                
+server_debug: $(SERVER_SOURCES)
+		@gcc $(SERVER_SOURCES) -o $(SERVER_BIN) -ansi -pedantic -Wall -lrt -lpthread -g
+		@gdb $(SERVER_BIN)
+		@rm -rf $(SERVER_BIN)
 
-#$(BIN): $(HEADERS)
+client_debug: $(CLIENT_SOURCES)
+		@gcc $(CLIENT_SOURCES) -o $(CLIENT_BIN) -ansi -pedantic -Wall -lrt -lpthread -g
+		@gdb $(CLIENT_BIN)
+		@rm -rf $(CLIENT_BIN)
 
-clear: 
-                rm -rf $(BIN)
+clear:
+		@rm -rf $(SERVER_BIN)
+		@rm -rf $(CLIENT_BIN)
