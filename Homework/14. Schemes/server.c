@@ -19,12 +19,12 @@ void *Thr_client(void *val){
             perror("recv");
             exit(EXIT_FAILURE);  
         }
-				if (strncmp(buffer, "Close", BUF_SIZE) == 0){
-					printf("Close fd == %d\n", *fd_socket);
-					close(*fd_socket);
-					*fd_socket = -1;
-					pthread_exit(0);
-				}
+        if(strncmp(buffer, "Close", BUF_SIZE) == 0){
+            printf("Close fd == %d\n", *fd_socket);
+            close(*fd_socket);
+            *fd_socket = -1;
+            pthread_exit(0);
+        }
         if((send(*fd_socket, buffer, BUF_SIZE, 0)) == -1){
             perror("send");
             exit(EXIT_FAILURE);
