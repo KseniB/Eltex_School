@@ -10,7 +10,7 @@ SOURCES := main.c
 all: $(BIN)
 
 $(BIN):	$(SOURCES)
-                gcc $(SOURCES) -o $(BIN)
+                gcc $(SOURCES) -o $(BIN) -lpthread
                 ./$(BIN)
                 rm -rf $(BIN)
 
