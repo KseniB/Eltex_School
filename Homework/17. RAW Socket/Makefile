@@ -1,18 +1,33 @@
 CC := gcc
 #LDFLAGS := -lm
 
-SOURCER1 := sender
-SOURCER2 := receiver
+SERVER_BIN := mq_server
+CLIENT_BIN := mq_client
+SERVER_SOURCES := server.c
+CLIENT_SOURCES := client.c
 
-.PHONY := all clear
+.PHONY: clear
 
-all: $(SOURCER1) $(SOURCER2)
+server: $(SERVER_SOURCES)
+		@gcc $(SERVER_SOURCES) -o $(SERVER_BIN) -ansi -pedantic -Wall -lrt -lpthread
+		@./$(SERVER_BIN)
+		@rm -rf $(SERVER_BIN)
 
-$(SOURCER1): $(SOURCER1).c
-		gcc $(SOURCER1).c -o $(SOURCER1) -g -pthread -lrt
+client: $(CLIENT_SOURCES)
+		@gcc $(CLIENT_SOURCES) -o $(CLIENT_BIN) -ansi -pedantic -Wall -lrt -lpthread
+		@./$(CLIENT_BIN)
+		@rm -rf $(CLIENT_BIN)
+                
+server_debug: $(SERVER_SOURCES)
+		@gcc $(SERVER_SOURCES) -o $(SERVER_BIN) -ansi -pedantic -Wall -lrt -lpthread -g
+		@gdb $(SERVER_BIN)
+		@rm -rf $(SERVER_BIN)
 
-$(SOURCER2): $(SOURCER2).c
-		gcc $(SOURCER2).c -o $(SOURCER2) -g -pthread
+client_debug: $(CLIENT_SOURCES)
+		@gcc $(CLIENT_SOURCES) -o $(CLIENT_BIN) -ansi -pedantic -Wall -lrt -lpthread -g
+		@gdb $(CLIENT_BIN)
+		@rm -rf $(CLIENT_BIN)
 
 clear:
-		rm $(SOURCER1) $(SOURCER2)
+		@rm -rf $(SERVER_BIN)
+		@rm -rf $(CLIENT_BIN)
