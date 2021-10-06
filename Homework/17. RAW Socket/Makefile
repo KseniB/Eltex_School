@@ -1,8 +1,8 @@
 CC := gcc
 #LDFLAGS := -lm
 
-SERVER_BIN := mq_server
-CLIENT_BIN := mq_client
+SERVER_BIN := server_bin
+CLIENT_BIN := client_bin
 SERVER_SOURCES := server.c
 CLIENT_SOURCES := client.c
 
