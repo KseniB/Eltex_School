@@ -1,18 +1,33 @@
 CC := gcc
 #LDFLAGS := -lm
 
-SOURCER1 := sender
-SOURCER2 := receiver
+SENDER_BIN := sender_bin
+RECEIVER_BIN := receiver_bin
+SENDER_SOURCES := sender.c
+RECEIVER_SOURCES := receiver.c
 
-.PHONY := all clear
+.PHONY: clear
 
-all: $(SOURCER1) $(SOURCER2)
+sender: $(SENDER_SOURCES)
+		@gcc $(SENDER_SOURCES) -o $(SENDER_BIN) -ansi -pedantic -Wall -lrt -lpthread
+		@./$(SENDER_BIN)
+		@rm -rf $(SENDER_BIN)
 
-$(SOURCER1): $(SOURCER1).c
-		gcc $(SOURCER1).c -o $(SOURCER1) -g -pthread -lrt
+receiver: $(RECEIVER_SOURCES)
+		@gcc $(RECEIVER_SOURCES) -o $(RECEIVER_BIN) -ansi -pedantic -Wall -lrt -lpthread
+		@./$(RECEIVER_BIN)
+		@rm -rf $(RECEIVER_BIN)
+                
+sender_debug: $(SENDER_SOURCES)
+		@gcc $(SENDER_SOURCES) -o $(SENDER_BIN) -ansi -pedantic -Wall -lrt -lpthread -g
+		@gdb $(SENDER_BIN)
+		@rm -rf $(SENDER_BIN)
 
-$(SOURCER2): $(SOURCER2).c
-		gcc $(SOURCER2).c -o $(SOURCER2) -g -pthread
+receiver_debug: $(RECEIVER_SOURCES)
+		@gcc $(RECEIVER_SOURCES) -o $(RECEIVER_BIN) -ansi -pedantic -Wall -lrt -lpthread -g
+		@gdb $(RECEIVER_BIN)
+		@rm -rf $(RECEIVER_BIN)
 
 clear:
-		rm $(SOURCER1) $(SOURCER2)
+		@rm -rf $(SENDER_BIN)
+		@rm -rf $(RECEIVER_BIN)
