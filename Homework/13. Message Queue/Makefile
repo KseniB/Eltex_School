@@ -2,11 +2,7 @@ CC := gcc
 #LDFLAGS := -lm
 
 SERVER_BIN := server_bin
-CLIENT_BIN := client_bin
-SERVER_SOURCES := server.c
-CLIENT_SOURCES := client.c
 
-.PHONY: clear
 
 server: $(SERVER_SOURCES)
 		@gcc $(SERVER_SOURCES) -o $(SERVER_BIN) -ansi -pedantic -Wall -lrt -lpthread
