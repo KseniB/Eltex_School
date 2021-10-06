@@ -27,8 +27,8 @@ int main(){
 	memset(&server, 0, sizeof(server));
 	memset(&client, 0, sizeof(client));
 	server.sin_family    = AF_INET;  
-  server.sin_addr.s_addr = INADDR_ANY;
-  server.sin_port = htons(PORT); 
+  	server.sin_addr.s_addr = INADDR_ANY;
+  	server.sin_port = htons(PORT); 
 
 	if(bind(fd, (struct sockaddr*)&server, sizeof(server)) == -1){
 		perror("Bind:");
@@ -38,7 +38,7 @@ int main(){
 	int len, n;
 	len = sizeof(client);
 	while(1){
-	  if((n = recvfrom(fd, buffer, sizeof(buffer), MSG_WAITALL, (struct sockaddr*)&client, &len)) == -1){
+	  	if((n = recvfrom(fd, buffer, sizeof(buffer), MSG_WAITALL, (struct sockaddr*)&client, &len)) == -1){
 			perror("Recvfrom:");
 			exit(1);
 		}
