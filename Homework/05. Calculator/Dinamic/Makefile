@@ -21,8 +21,6 @@ $(BIN):	$(SOURCES)
                 gcc main.o -L. -l$(LIB) -o $(BIN)
                 $ LD_LIBRARY_PATH =. ./$(BIN)
 
-#$(BIN): $(HEADERS)
-
 clear: 
                 rm -rf $(BIN)
                 rm -rf *.o
