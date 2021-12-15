@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+	Функция побайтного вывода.
+*/
+
 int bit_shift(int num)
 {
     int shift = 0;
@@ -9,8 +13,13 @@ int bit_shift(int num)
         shift = ((num >> i * 8) & 0xFF);
         printf("Byte #%d: 0x%x\n", i, shift);
     }
+	
 	return 0;
 }
+
+/*
+	Функция замены определенного байта на заданное значение.
+*/
 
 int bit_replace(int num, int shift, int val)
 {
