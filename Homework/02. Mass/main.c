@@ -247,7 +247,7 @@ void Menu(int task)
 	
 		default:
 		    printf("Exiting the program...");
-		    exit_t = 1;
+		    exit(0);
 	}
 }
 
