@@ -28,3 +28,4 @@ $(BIN): $(HEADERS)
 
 clean: $(SOURCES)
 		rm -rf $(BIN)
+		rm -rf *.o
