@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <stdint.h>
 
-#include "node/node.h"
+#include "menu/node/node.h"
 #include "menu/menu.h"
 
 int main(){
