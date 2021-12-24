@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/*
-	Функция побайтного вывода.
-*/
-
+/*Функция побайтного вывода.*/
 int bit_shift(int num)
 {
     int shift = 0;
@@ -17,10 +14,7 @@ int bit_shift(int num)
 	return 0;
 }
 
-/*
-	Функция замены определенного байта на заданное значение.
-*/
-
+/*Функция замены определенного байта на заданное значение.*/
 int bit_replace(int num, int shift, int val)
 {
     int b_num = 0x00000000;
@@ -42,7 +36,7 @@ int main(void)
 	unsigned int shift = 0;
 	unsigned int val = 0;
 	
-    while(1){
+    do{
     	printf("Your number in bytes (0xXXXXXXXX):");
     	scanf("%x", &num);
     	bit_shift(num);
@@ -53,6 +47,7 @@ int main(void)
     	printf("Enter a new byte (0xXX):");
     	scanf("%x", &val);
     	bit_replace(num, shift, val);
-    }
+    }while(1);
+	
 	return 0;
 }
