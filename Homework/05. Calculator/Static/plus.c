@@ -7,7 +7,16 @@ float plus(float sum)
 	printf("  +  -  *  /\n");
 	printf(" ---\n");
 	printf("%.4f + ", sum);
-	scanf("%f", &buf);
+	if (1 != scanf("%f", &buf))
+	{
+		trashclean();
+		system("clear");
+		fprintf(stderr, "Invalid input");
+		puts("\nPress Enter to return to the menu");
+	    getchar();
+
+		return sum;
+	}
 	sum += buf;
 	
 	return sum;
