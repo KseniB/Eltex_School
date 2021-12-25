@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-float plus(float Sum);
-float minus(float Raz);
-float multiply(float Pro);
-float divide(float Del);
+float plus(float sum);
+float minus(float razn);
+float multiply(float pro);
+float divide(float del);
+void menu();
+void trashclean();
