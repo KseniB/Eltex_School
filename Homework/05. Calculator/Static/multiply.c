@@ -7,7 +7,16 @@ float multiply(float pro)
 	printf("  +  -  *  /\n");
 	printf("       ---\n");
 	printf("%.4f * ", pro);
-	scanf("%f", &buf);
+	if (1 != scanf("%f", &buf))
+	{
+		trashclean();
+		system("clear");
+		fprintf(stderr, "Invalid input");
+		puts("\nPress Enter to return to the menu");
+	    getchar();
+
+		return pro;
+	}
 	pro *= buf;
 	
 	return pro;
