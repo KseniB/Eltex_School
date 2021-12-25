@@ -1,3 +1,5 @@
+#include "mycalc.h"
+
 void menu(float result)
 {
     printf("1. Reset \n");
