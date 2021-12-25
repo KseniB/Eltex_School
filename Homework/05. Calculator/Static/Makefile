@@ -3,8 +3,8 @@ CC := gcc
 LIB := mycalc
 BIN := main
 SOURCES := main.c 
-LIB_SOURCES := plus.c minus.c divide.c multiply.c menu.c trashclean.c
-HEADERS := mycalc.h
+LIB_SOURCES := lib/plus.c lib/minus.c lib/divide.c lib/multiply.c lib/menu.c lib/trashclean.c
+HEADERS := lib/mycalc.h
 
 .PHONY := clean
 
