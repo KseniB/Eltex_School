@@ -1,4 +1,4 @@
-#include "mycalc.h"
+#include "lib/mycalc.h"
 
 int main(){
 	float result = 0;
@@ -7,15 +7,15 @@ int main(){
 		system("clear");
 		menu(result);
 		if (1 != scanf("%c", &buf))
-    	{
-    		trashclean();
-    		system("clear");
-    		fprintf(stderr, "Invalid input");
-    		puts("\nPress Enter to return to the menu");
-    	    getchar();
-    
-    		return -1;
-    	}
+		{
+			trashclean();
+			system("clear");
+			fprintf(stderr, "Invalid input");
+			puts("\nPress Enter to return to the menu");
+			getchar();
+	
+			return -1;
+		}
 		
 		if (buf == '+')
 		{
@@ -39,8 +39,8 @@ int main(){
 		}
 		else if (buf == '2')		
 		{
-		    system("clear");
-            printf("Exiting the program...");
+			system("clear");
+			puts("Exiting the program...");
 			exit(0);
 		}
 	}while(1);
