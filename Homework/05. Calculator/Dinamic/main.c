@@ -1,56 +1,49 @@
-#include "mycalc.h"
-
-void Menu(float Res){
-  printf("1. + \n");
-  printf("2. - \n");
-  printf("3. * \n");
-  printf("4. / \n");
-  printf("5. Reset \n");
-  printf("6. Exit \n");
-  printf("--------------\n");
-  printf("Result = %.2f\n", Res);
-  printf("--------------\n");
-}
+#include "lib/mycalc.h"
 
 int main(){
-	float res = 0.0;
-	char a[255];
-	int b;
-	while(1){
+	float result = 0;
+	char buf = 0;
+	do{
 		system("clear");
-		Menu(res);
-		fgets(&a, 2, stdin);
-		fflush(stdin);
-		b = atoi(&a);
-		
-		switch(b){
-			case 1:
-				res = plus(res);
-			break;
-				
-			case 2:
-				res = minus(res);
-			break;
-				
-			case 3:
-				res = multiply(res);
-			break;
-				
-			case 4:
-				res = divide(res);
-			break;
-				
-			case 5:
-				res = 0.0;
-			break;
-				
-			case 6:
-				_Exit(0);
-			break;
-				
-			default :
-				printf("Wrong input \n");
-			break;
+		menu(result);
+		if (1 != scanf("%c", &buf))
+		{
+			trashclean();
+			system("clear");
+			fprintf(stderr, "Invalid input");
+			puts("\nPress Enter to return to the menu");
+			getchar();
+	
+			return -1;
 		}
-	}
+		
+		if (buf == '+')
+		{
+				result = plus(result);
+		}
+		else if (buf == '-')
+		{
+			result = minus(result);
+		}
+		else if (buf == '*')	
+		{
+			result = multiply(result);
+		}
+		else if (buf == '/')		
+		{
+			result = divide(result);
+		}
+		else if (buf == '1')		
+		{
+			result = 0;
+		}
+		else if (buf == '2')		
+		{
+			system("clear");
+			puts("Exiting the program...");
+			exit(0);
+		}
+	}while(1);
+	
+	return 0;
 }
