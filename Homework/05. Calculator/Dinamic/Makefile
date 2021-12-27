@@ -1,27 +1,36 @@
 CC := gcc
-#LDFLAGS := -lm
 
-LIB := statiCalc
-BIN := statiCalc_lib
-SOURCES := main.c
-LIB_SOURCES := plus.c minus.c divide.c multiply.c
-HEADERS := mycalc.h
+LIB := mycalc
+BIN := main
+SOURCES := main.c 
+LIB_SOURCES := lib/plus.c lib/minus.c lib/divide.c lib/multiply.c lib/menu.c lib/trashclean.c
+HEADERS := lib/mycalc.h
 
-.PHONY := all clear
+.PHONY := clean
 
-all: $(LIB) $(BIN) clear
+all: bin_exe clean
 
-$(LIB): $(LIB_SOURCES)
-                gcc -fPIC -c $(LIB_SOURCES)
+bin_exe: $(SOURCES) $(LIB_SOURCES)
+		gcc -fPIC -c $(LIB_SOURCES)
 		gcc -shared -o lib$(LIB).so *.o
+		gcc $(SOURCES) -o $(BIN) -L. -l$(LIB) -Wall
+		LD_LIBRARY_PATH=$$PWD:$$LD_LIBRARY_PATH ./$(BIN)
+		
+bin: $(SOURCES) $(LIB_SOURCES)
+		gcc -fPIC -c $(LIB_SOURCES)
+		gcc -shared -o lib$(LIB).so *.o
+		gcc $(SOURCES) -o $(BIN) -L. -l$(LIB) -Wall
+		
+debug: $(SOURCES) $(LIB_SOURCES)
+		gcc -fPIC -c $(LIB_SOURCES)
+		gcc -shared -o lib$(LIB).so *.o
+		gcc $(SOURCES) -o $(BIN) -L. -l$(LIB) -g
+		gdb $(BIN)
+		rm -rf $(BIN)
 
-$(BIN):	$(SOURCES)
-                gcc $(SOURCES) -L. -l$(LIB) -o $(BIN)
-                gcc -c $(SOURCES)
-                gcc main.o -L. -l$(LIB) -o $(BIN)
-                $ LD_LIBRARY_PATH =. ./$(BIN)
+$(BIN): $(HEADERS)
 
-clear: 
-                rm -rf $(BIN)
-                rm -rf *.o
-                rm -rf lib$(LIB).so
+clean: $(SOURCES)
+		@rm -rf $(BIN)
+		@rm -rf *.o
+		@rm -rf *.so
