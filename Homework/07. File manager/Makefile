@@ -7,14 +7,14 @@ HEADERS := lib/lib.h
 all: bin_exe clean
 
 bin_exe: $(SOURCES)
-		gcc $(SOURCES) -o $(BIN) -Wall
+		gcc $(SOURCES) -o $(BIN) -lncurses -pthread -Wall
 		./$(BIN)
 		
 bin: $(SOURCES)
-		gcc $(SOURCES) -o $(BIN) -Wall
+		gcc $(SOURCES) -o $(BIN) -lncurses -pthread -Wall
 		
 debug: $(SOURCES)
-		gcc $(SOURCES) -o $(BIN) -g
+		gcc $(SOURCES) -o $(BIN) -g -lncurses -pthread
 		gdb $(BIN)
 		rm -rf $(BIN)
 
