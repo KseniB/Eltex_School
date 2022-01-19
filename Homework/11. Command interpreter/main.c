@@ -94,8 +94,8 @@ int main()
             }
             if (execvp(*arg_list1, arg_list1) == -1)
             {
-            perror("EXECUTION_1: ");
-            return -1;
+                perror("EXECUTION 1: ");
+                return -1;
             }
         }
         if (args_amount == '2')
@@ -108,7 +108,7 @@ int main()
                 
                 if (execvp(*arg_list2, arg_list2) == -1)
                 {
-                    perror("EXECUTION_2: ");
+                    perror("EXECUTION 2: ");
                     return -1;
                 }
             }
