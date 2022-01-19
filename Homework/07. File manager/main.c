@@ -59,7 +59,7 @@ int main()
 	x = 1;
 	y = 0;
 	
-	while(1)
+	while (1)
 	{
 		curs_set(FALSE);
 		cbreak();
@@ -68,37 +68,49 @@ int main()
 		boxes(size, path_l, path_r);
 		print_dirs(buff_l, l, buff_r, r, x, y);
 		symb = getch();
-		switch(symb)
+		switch (symb)
 		{
 			case KEY_UP:
-				if(x > 1)
+				if (x > 1)
+				{
 					x--;
+				}
 			break;
 				
 			case KEY_DOWN:
-				if(y == 0 && x < l - 1)
+				if (y == 0 && x < l - 1)
+				{	
+				    x++;
+				}
+				if (y == 1 && x < r - 1)
+				{
 					x++;
-				if(y == 1 && x < r - 1)
-					x++;
+				}
 			break;
 			
 			case KEY_BTAB:
-				if(y == 0) 	y++;
-				else 		y  = 0;
+				if (y == 0)
+				{
+				    y++;
+				}
+				else
+				{
+				    y = 0;
+				}
 				x = 1;
 			break;
 			
 			case 10:
-				if(y == 0)
+				if (y == 0)
 				{
 					len = strlen(path_l);
 					chek = strcmp(buff_l[x]->d_name, "..");
 					
-					if(chek == 0)
+					if (chek == 0)
 					{
-						for(int i = len; i >= 0; i--)
+						for (int i = len; i >= 0; i--)
 						{ 
-							if(path_l[i] == '/')
+							if (path_l[i] == '/')
 							{
 								path_l[i] = '\0';
 								break;
@@ -119,9 +131,9 @@ int main()
            			
                     file_size = sb.st_size;
 					l = scandir(path_l, &buff_l, NULL, alphasort); 
-					if(l == -1)
+					if (l == -1)
 					{
-						if(copy == 1)
+						if (copy == 1)
 						{
 							pthread_create(&tid, NULL, dr_copy, &wr_file);
 							file1 = open(path_l, O_RDONLY);
@@ -131,7 +143,7 @@ int main()
 							close(creat(copy_path, 0664));
 							file2 = open(copy_path, O_RDWR | O_CREAT | O_TRUNC);
 							
-							while(read(file1, &copy_buff, sizeof(copy_buff)) > 0)
+							while (read(file1, &copy_buff, sizeof(copy_buff)) > 0)
 							{ 
 								write(file2, &copy_buff, sizeof(copy_buff));
 								wr_file++;
@@ -149,9 +161,9 @@ int main()
 							init_pair(1, COLOR_BLUE, COLOR_GREEN);
 							init_pair(2, COLOR_YELLOW, COLOR_BLUE); 
 							len = strlen(path_l);
-							for(int i = len; i >= 0; i--)
+							for (int i = len; i >= 0; i--)
 							{
-                                if(path_l[i] == '/')
+                                if (path_l[i] == '/')
                                 {
                                    	path_l[i] = '\0';
                                     break;
@@ -164,7 +176,7 @@ int main()
 					    else 
 					    {
 							pid = fork();
-							if(pid == 0)
+							if (pid == 0)
 							{
 								delwin(wnd_l);
 								delwin(wnd_r);
@@ -189,9 +201,9 @@ int main()
                                 wrefresh(wnd_r);
 								
 								len = strlen(path_l);
-								for(int i = len; i >= 0; i--)
+								for (int i = len; i >= 0; i--)
 								{
-                                    if(path_l[i] == '/')
+                                    if (path_l[i] == '/')
                                     {
                                         path_l[i] = '\0';
                                         break;
@@ -206,11 +218,11 @@ int main()
 				{
                     len = strlen(path_r);
                     chek = strcmp(buff_r[x]->d_name, "..");
-                    if(chek == 0)
+                    if (chek == 0)
                     {
-                        for(int i = len; i >= 0; i--)
+                        for (int i = len; i >= 0; i--)
                         {
-                            if(path_r[i] == '/')
+                            if (path_r[i] == '/')
                             {
                                 path_r[i] = '\0';
                                 break;
@@ -224,10 +236,10 @@ int main()
                     }
                     
                     r = scandir(path_r, &buff_r, NULL, alphasort);
-                    if(r == -1)
+                    if (r == -1)
                     {
 						pid = fork();
-						if(pid == 0)
+						if (pid == 0)
 						{
 							delwin(wnd_r);
 							delwin(wnd_l);
@@ -254,9 +266,9 @@ int main()
 							wrefresh(wnd_r);
 							
 							len = strlen(path_r);
-							for(int i = len; i >= 0; i--)
+							for (int i = len; i >= 0; i--)
 							{
-                                if(path_r[i] == '/')
+                                if (path_r[i] == '/')
                                 {
                                     path_r[i] = '\0';
                                     break;
@@ -274,7 +286,7 @@ int main()
 			break;
 			
 			case 'c':
-				if(copy == 0)
+				if (copy == 0)
 				{
 					copy = 1;
 					init_pair(2, COLOR_BLUE, COLOR_GREEN);
@@ -289,16 +301,16 @@ int main()
 			break;
 			
 			case  27:
-				echo();
-				curs_set(TRUE);
-				nocbreak;
-				free(buff_r);
-				free(buff_l);
-				delwin(wnd_r);
+                echo();
+                curs_set(TRUE);
+                nocbreak;
+                free(buff_r);
+                free(buff_l);
+                delwin(wnd_r);
                 delwin(wnd_l);
                 endwin();
-				system("clear");
-				exit(0);
+                system("clear");
+                exit(0);
 		}
 
 		refresh();
