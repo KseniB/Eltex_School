@@ -1,5 +1,11 @@
 #include "lib/lib.h"
 
+void sig_winch(int signo)
+{    
+	ioctl(fileno(stdout), TIOCGWINSZ, (char *) &size);    
+	resizeterm(size.ws_row, size.ws_col); 	
+}
+
 int main()
 {
 	int file = 0;
