@@ -66,7 +66,7 @@ void *loader(void *val)
         shop[i] += LOADER_ADD; 
         printf("Shop:[%d][%d][%d][%d][%d]\n", shop[0], shop[1], shop[2], shop[3], shop[4]);
         pthread_mutex_unlock(&mtx3);
-        sleep(1);
+        sleep(2);
     }
     printf("Work is done.\n");
 }
