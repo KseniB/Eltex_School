@@ -1,20 +1,24 @@
-CC := gcc
-#LDFLAGS := -lm
-
 BIN := main
 SOURCES := main.c
 #HEADERS := main.h
 
-.PHONY := all clear
+.PHONY := clean
 
-all: $(BIN)
+all: bin_exe clean
 
-$(BIN):	$(SOURCES)
-                gcc $(SOURCES) -o $(BIN) -lpthread
-                ./$(BIN)
-                rm -rf $(BIN)
+bin_exe: $(SOURCES)
+		gcc $(SOURCES) -o $(BIN) -lpthread -Wall
+		./$(BIN)
+		
+bin: $(SOURCES)
+		gcc $(SOURCES) -o $(BIN) -lpthread -Wall
+		
+debug: $(SOURCES)
+		gcc $(SOURCES) -o $(BIN) -g -lpthread
+		gdb $(BIN)
+		rm -rf $(BIN)
 
 #$(BIN): $(HEADERS)
 
-clear: 
-                rm -rf $(BIN)
+clean: $(SOURCES)
+		rm -rf $(BIN)
