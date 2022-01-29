@@ -1,36 +1,24 @@
-CC := gcc
-
-SERVER_BIN := server_bin
-CLIENT_BIN := client_bin
-SERVER_SOURCES := server.c
-CLIENT_SOURCES := client.c
+BIN := main
+SOURCES := main.c menu/node/node.c menu/menu.c
+HEADERS := menu/node/node.h menu/menu.h
 
 .PHONY := clean
 
-server_bin: $(SERVER_SOURCES)
-		gcc $(SERVER_SOURCES) -o $(SERVER_BIN) -lrt -lpthread -Wall
-		./$(SERVER_BIN)
-		rm -rf $(SERVER_BIN)
-		
-client_bin: $(CLIENT_SOURCES)
-		gcc $(CLIENT_SOURCES) -o $(CLIENT_BIN) -lrt -lpthread -Wall
-		./$(CLIENT_BIN)
-		rm -rf $(CLIENT_BIN)
-		
-server_debug: $(SERVER_SOURCES)
-		gcc $(SERVER_SOURCES) -o $(SERVER_BIN) -lrt -lpthread -g -Wall
-		gdb $(SERVER_BIN)
-		rm -rf $(SERVER_BIN)
+all: bin_exe clean
 
-client_debug: $(CLIENT_SOURCES)
-		gcc $(CLIENT_SOURCES) -o $(CLIENT_BIN) -lrt -lpthread -g -Wall
-		gdb $(CLIENT_BIN)
-		rm -rf $(CLIENT_BIN)
+bin_exe: $(SOURCES)
+		gcc $(SOURCES) -o $(BIN) -Wall
+		./$(BIN)
 
-#$(BIN): $(HEADERS)
+bin: $(SOURCES)
+		gcc $(SOURCES) -o $(BIN) -Wall
+
+debug: $(SOURCES)
+		gcc $(SOURCES) -o $(BIN) -g
+		gdb $(BIN)
+		rm -rf $(BIN)
+
+$(BIN): $(HEADERS)
 
 clean: $(SOURCES)
-		rm -rf $(SERVER_BIN)
-		rm -rf $(CLIENT_BIN)
-
-
+		rm -rf $(BIN)
