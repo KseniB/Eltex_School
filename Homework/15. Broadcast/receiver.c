@@ -23,8 +23,8 @@ int main()
     
 	if ((fd = socket(AF_INET, SOCK_DGRAM, 0)) == -1)
 	{
-    	perror("socket");
-    	exit(EXIT_FAILURE);
+		perror("socket");
+		exit(EXIT_FAILURE);
 	} 
 	
 	memset(&server, 0, sizeof(server));
