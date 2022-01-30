@@ -12,17 +12,19 @@
 #define S_PORT 8081
 #define SIZE_PACKAGE 128
 
-struct package{
+struct package
+{
 	char network[20];
 	char udphdr[8];
 	char msg[100];
 };
 
-struct udphdr{
+struct udphdr
+{
 	u_short	uh_s_port;		// Source port 
 	u_short	uh_d_port;		// Destination port
-	u_short	uh_len;		// Length
-	u_short	uh_chsum;			// Checksum
+	u_short	uh_len;			// Length
+	u_short	uh_chsum;		// Checksum
 };
 
 int main()
