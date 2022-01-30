@@ -12,20 +12,23 @@
 #define S_PORT 8081
 #define SIZE_PACKAGE 128
 
-struct package{
+struct package
+{
 	char Eth[14];
 	char network[20];
 	char udphdr[8];
 	char msg[100];
 };
 
-struct ethhdr1{
+struct ethhdr1
+{
 	char MAC_D[6];
 	char MAC_S[6];
 	short type;
 };
 
-struct iphdr{
+struct iphdr
+{
 	char vers_sizeh;
 	char hz;
 	short size_packege;
@@ -38,43 +41,53 @@ struct iphdr{
 	int d_ip;
 };
 
-struct udphdr{
-	u_short	uh_sport;		// Source port 
-	u_short	uh_dport;		// Destination port
-	u_short	uh_ulen;		// Length
-	u_short	uh_sum;			// Checksum
+struct udphdr
+{
+	u_short	uh_s_port;		// Source port 
+	u_short	uh_d_port;		// Destination port
+	u_short	uh_len;		    // Length
+	u_short	uh_chsum;		// Checksum
 };
 
-short csum(char *buffer){
-    
+short csum(char *buffer)
+{
 	int tmp = 0;
-	int Csum = 0;
+	int chsum = 0;
 	short *ptr;
+	
 	ptr = (short *)buffer;
-	for(int i = 0; i < 10; i++){
-		Csum = Csum + (*ptr&0x0000ffff);
+	
+	for (int i = 0; i < 10; i++)
+	{
+		chsum = chsum + (*ptr&0x0000ffff);
 		ptr++;
 	}
-	for(int i = 0; i < 2; i++){
-		tmp = Csum >> 16;
-		Csum = Csum&0xffff;
-		if(tmp > 0){
-			Csum = Csum + tmp;
-		}else{
+	
+	for (int i = 0; i < 2; i++)
+	{
+		tmp = chsum >> 16;
+		chsum = chsum&0xffff;
+		
+		if (tmp > 0)
+		{
+			chsum = chsum + tmp;
+		}
+		else
+		{
 			break;
 		}
 	}
-	Csum = ~Csum;
-	return (short *)(Csum&0xffff);
+	chsum = ~chsum;
+	return (short *)(chsum&0xffff);
 }
 
-
-int main(int argc, char *argv[]){
-    
+int main()
+{
 	int fd, fd1;
 	char buffer[128];
 	int len;
 	unsigned short *dport;
+	
 	memset(buffer, 0, 128);
 	
 	struct sockaddr_in client;
@@ -111,51 +124,69 @@ int main(int argc, char *argv[]){
 	ip_hdr->checksum = csum(&buffer[14]);
 
 	header = (struct udphdr*)&buffer[34];
-	header->uh_sport = htons(S_PORT);
-	header->uh_dport = htons(PORT);
-	header->uh_ulen = htons(SIZE_PACKAGE - 34);
-	header->uh_sum  = htons(0);
+	header->uh_s_port = htons(S_PORT);
+	header->uh_d_port = htons(PORT);
+	header->uh_len    = htons(SIZE_PACKAGE - 34);
+	header->uh_chsum  = htons(0);
 
 	strcat(&buffer[42], argv[1]);
+	
 	client.sin_family = AF_INET;  
 	client.sin_addr.s_addr = INADDR_ANY;
 	client.sin_port = htons(S_PORT);
 
-	if((fd1 = socket(AF_INET, SOCK_DGRAM, 0)) == -1){
-		perror("Socket:");
-		exit(1);
+	if ((fd1 = socket(AF_INET, SOCK_DGRAM, 0)) == -1)
+	{
+		perror("socket");
+		exit(EXIT_FAILURE);
 	}
-	if(bind(fd1, (struct sockaddr*)&client, sizeof(client)) == -1){
-		perror("Bind");
-		exit(1);
+	
+	if (bind(fd1, (struct sockaddr*)&client, sizeof(client)) == -1)
+	{
+		perror("bind");
+		exit(EXIT_FAILURE);
 	}
-    if((fd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL))) == -1){
-		perror("Socket:");
-		exit(1);
+	
+    if ((fd = socket(AF_PACKET, SOCK_RAW, htons(ETH_P_ALL))) == -1)
+    {
+		perror("socket");
+		exit(EXIT_FAILURE);
 	}
 	
 	memset(&server, 0, sizeof(server));
+	
     server.sll_family = AF_PACKET;
     server.sll_ifindex = if_nametoindex("enp0s8");
     server.sll_halen = 6;
 
 	len = sizeof(server);
-	if(sendto(fd, buffer, SIZE_PACKAGE, 0, (struct sockaddr*)&server, len) == -1){
-        perror("Sendto:");
-        exit(1);
+	
+	if (sendto(fd, buffer, SIZE_PACKAGE, 0, (struct sockaddr*)&server, len) == -1)
+	{
+        perror("sendto");
+        exit(EXIT_FAILURE);
  	}
+ 	
  	receive = (struct package*)buffer;
 	dport = (short *)&receive->udphdr[2];
- 	while(1){
-		if(recvfrom(fd, buffer, sizeof(buffer), 0, (struct sockaddr*)&server, &len) == -1){
-		    perror("Recvfrom:");
-		    exit(1);
+	
+ 	while (1)
+ 	{
+		if (recvfrom(fd, buffer, sizeof(buffer), 0, (struct sockaddr*)&server, &len) == -1)
+		{
+		    perror("recvfrom");
+		    exit(EXIT_FAILURE);
 		}
+		
 		printf("%d\n", ntohs(*dport));
-		if(ntohs(*dport) == S_PORT) {
+		
+		if (ntohs(*dport) == S_PORT)
+		{
 			printf("It's mine: ");
 			printf("%s\n", receive->msg);
-		}else{
+		}
+		else
+		{
 			printf("That's not mine: ");
 			printf("%s\n", receive->msg);
 		}
