@@ -51,12 +51,12 @@ int main(void)
         }
         
         int recv_f = recv(fd, buffer, BUF_SIZE, 0);
-        printf("Server: %s", buffer);
         if(recv_f == -1)
         {
             perror("recv");
             exit(EXIT_FAILURE);
         }
+	printf("Server: %s\n", buffer);
     }
     
     close(fd);
