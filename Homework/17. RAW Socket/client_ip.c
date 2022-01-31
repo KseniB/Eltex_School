@@ -24,7 +24,7 @@ struct iphdr
 {
 	char vers_sizeh;
 	char hz;
-	short size_packege;
+	short size_package;
 	short id;
 	short offset;
 	char ttl;
