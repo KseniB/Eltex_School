@@ -31,7 +31,7 @@ struct iphdr
 {
 	char vers_sizeh;
 	char hz;
-	short size_packege;
+	short size_package;
 	short id;
 	short offset;
 	char ttl;
@@ -45,7 +45,7 @@ struct udphdr
 {
 	u_short	uh_s_port;		// Source port 
 	u_short	uh_d_port;		// Destination port
-	u_short	uh_len;		    // Length
+	u_short	uh_len;			// Length
 	u_short	uh_chsum;		// Checksum
 };
 
@@ -114,7 +114,7 @@ int main()
 
 	ip_hdr = (struct iphdr*)&buffer[14];
 	ip_hdr->vers_sizeh = 0x45;
-	ip_hdr->size_packege = htons(SIZE_PACKAGE - 14);
+	ip_hdr->size_package = htons(SIZE_PACKAGE - 14);
 	ip_hdr->id = htons(0x1234);
 	ip_hdr->offset = htons(0x4000);
 	ip_hdr->ttl = 0x40;
